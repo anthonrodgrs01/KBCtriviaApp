@@ -6,18 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.databinding.DataBindingUtil.inflate
-import com.example.kbctriviaapp.databinding.FragmentTitleBinding
+import com.example.kbctriviaapp.databinding.FragmentGameBinding
 
 
-class TitleFragment : Fragment() {
+class GameFragment : Fragment() {
 
 
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-       val binding : FragmentTitleBinding = inflate(inflater, R.layout.fragment_title,container,false)
+        savedInstanceState: Bundle?): View? {
+
+        val binding : FragmentGameBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_game,container,false)
         return binding.root
     }
 
@@ -28,15 +28,15 @@ class TitleFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment TitleFragment.
+         * @return A new instance of fragment GameFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-                TitleFragment().apply {
-                    arguments = Bundle().apply {
+            GameFragment().apply {
+                arguments = Bundle().apply {
 
-                    }
                 }
+            }
     }
 }
