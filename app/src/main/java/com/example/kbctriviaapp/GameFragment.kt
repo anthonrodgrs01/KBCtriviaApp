@@ -11,15 +11,62 @@ import com.example.kbctriviaapp.databinding.FragmentGameBinding
 
 class GameFragment : Fragment() {
 
+    data class Question(
+        val text:String,
+        val answers: List<String>
+        )
 
+    private val questions : MutableList<Question> = mutableListOf(
+        Question(text ="Who is the Prime Minister of India",
+                 answers = listOf("Narendra Modi","Virat Kohli","Manmohan Singh","Rahul Gandhi")),
+        Question(text = "Who is the best batsmen in cricket",
+            answers = listOf("Virat Kohli","Babar Azam","Steve Smith","Ben Stokes")),
+        Question(text = "When is republic day celebrated in India",
+        answers = listOf("15th August","26th January","14th August","26th November")),
+        Question(text = "Where is Pune located",
+        answers = listOf("Maharashtra", "Punjab", "Wuhan" , "New Zealand"))
 
+    )
+
+    lateinit var currentQuestion : Question
+    lateinit var answers : MutableList<String>
+    private var questionIndex = 0
+    private var numQuestion = Math.min((questions.size + 1) / 2 , 3)
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?): View? {
 
         val binding : FragmentGameBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_game,container,false)
+        randomizeQuestions()
         return binding.root
     }
+
+    private fun randomizeQuestions(){
+        questions.shuffle()
+        questionIndex = 0
+        setQuestion()
+    }
+
+    private fun setQuestion(){
+        currentQuestion = questions[questionIndex]
+        answers = currentQuestion.answers.toMutableList()
+        answers.shuffle()
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     companion object {
         /**
